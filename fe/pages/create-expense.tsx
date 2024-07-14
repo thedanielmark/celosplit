@@ -50,8 +50,8 @@ export default function CreateExpense() {
   return (
     <>
       <Head>
-        <title>SplitMonies</title>
-        <meta name="title" content="SplitMonies" />
+        <title>CeloSplit</title>
+        <meta name="title" content="CeloSplit" />
       </Head>
       <div className="text-2xl font-black">Create Expense</div>
 

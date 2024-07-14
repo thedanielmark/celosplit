@@ -54,8 +54,8 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>SplitMonies</title>
-        <meta name="title" content="SplitMonies" />
+        <title>CeloSplit</title>
+        <meta name="title" content="CeloSplit" />
       </Head>
       <div className="p-5 pb-20">
         <div className="mt-5">

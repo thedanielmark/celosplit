@@ -130,14 +130,11 @@ export default function GroupPage() {
         wakuNode,
         address as string,
         inputMessage,
-        `/splitmonies/group/${id}`
+        `/celosplit/group/${id}`
       );
       console.log("message pushed...", message);
       setInputMessage("");
-      let newMessage = await receiveMessage(
-        wakuNode,
-        `/splitmonies/group/${id}`
-      );
+      let newMessage = await receiveMessage(wakuNode, `/celosplit/group/${id}`);
       console.log(newMessage);
       // await queryMessage(wakuNode)
       setMessages([...messages, newMessage]);
@@ -163,10 +160,10 @@ export default function GroupPage() {
         if (!wakuNode) {
           console.log("Node not created");
         } else {
-          console.log("querying message...", `/splitmonies/group/${id}`);
+          console.log("querying message...", `/celosplit/group/${id}`);
           const messages = await retrieveExistingMessages(
             wakuNode,
-            `/splitmonies/group/${id}`
+            `/celosplit/group/${id}`
             // `/js-waku-examples/1/chat/proto`
           );
           setMessages(messages);

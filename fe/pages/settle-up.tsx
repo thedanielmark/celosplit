@@ -46,8 +46,7 @@ const GroupPage = () => {
   const [groupImageHash, setGroupImageHash] = useState([]);
 
   const getGroupImageCID = () => {
-    const apiUrl =
-      "https://api.studio.thegraph.com/query/55648/splitmonies-mumbai/v0.0.1"; // Replace with your GraphQL API URL
+    const apiUrl = "https://api.studio.thegraph.com/query/55648/celosplit/0.01"; // Replace with your GraphQL API URL
     const query = `
     query {
       groupCreateds {

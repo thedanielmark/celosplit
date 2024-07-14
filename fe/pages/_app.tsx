@@ -168,12 +168,12 @@ export default function App({ Component, pageProps }: AppProps) {
                             <Image
                               className="h-8 w-auto"
                               src="/logo/logo-dark.png"
-                              alt="SplitMonies"
+                              alt="CeloSplit"
                               height={948}
                               width={1249}
                             />
                             <div className="text-2xl text-white font-black">
-                              SplitMonies
+                              CeloSplit
                             </div>
                           </div>
                           <nav className="flex flex-1 flex-col">
@@ -229,12 +229,12 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Image
                       className="h-8 w-auto"
                       src="/logo/logo-dark.png"
-                      alt="SplitMonies"
+                      alt="CeloSplit"
                       height={948}
                       width={1249}
                     />
                     <div className="text-2xl font-black text-white">
-                      SplitMonies
+                      CeloSplit
                     </div>
                   </div>
                   <nav className="flex flex-1 flex-col">
@@ -301,12 +301,12 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Image
                       className="h-8 w-auto"
                       src="/logo/logo-dark.png"
-                      alt="SplitMonies"
+                      alt="CeloSplit"
                       height={948}
                       width={1249}
                     />
                     <div className="text-2xl font-black leading-6 text-white">
-                      SplitMonies
+                      CeloSplit
                     </div>
                   </div>
                 </div>
