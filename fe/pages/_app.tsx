@@ -27,6 +27,9 @@ import { Dialog, Transition } from "@headlessui/react";
 // import { CONTENT_TOPIC } from "@/components/WakuChat/config";
 import { Protocols } from "@waku/interfaces";
 
+import { useConnect } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
+
 import { Fragment } from "react";
 import {
   Bars3Icon,
@@ -35,6 +38,9 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useAccount, useDisconnect, useBalance } from "wagmi";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { Alfajores } from "@celo/rainbowkit-celo/chains";
 
 const navigation = [
   { name: "Home", href: "/", icon: HomeIcon },
@@ -43,6 +49,16 @@ const navigation = [
   // { name: "Create Expense", icon: PlusCircleIcon, href: "/create-expense" },
   { name: "Settle Up", href: "/settle-up", icon: WalletIcon },
   // { name: "Chat", icon: ChatBubbleBottomCenterIcon, href: "/chat" },
+];
+
+// const NODE_OPTIONS = { defaultBootstrap: true };
+
+const tabs = [
+  { name: "Home", icon: HomeIcon, href: "/" },
+  { name: "Groups", icon: PaperAirplaneIcon, href: "/groups" },
+  { name: "Create Group", icon: PlusCircleIcon, href: "/create-group" },
+  { name: "Settlements", icon: WalletIcon, href: "/settlements" },
+  // { name: "Transactions", icon: ClockIcon, href: "/transactions" },
 ];
 
 function classNames(...classes: any[]) {
@@ -76,21 +92,23 @@ export default function App({ Component, pageProps }: AppProps) {
   const [ready, setReady] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const { publicClient, chains } = configureChains(
-    [celoAlfajores],
+  const { chains, publicClient } = configureChains(
+    [Alfajores],
     [publicProvider()]
   );
 
-  const { connectors } = getDefaultWallets({
-    appName: "CeloSplit",
-    projectId: "032e7d86545e1e9d28e796da73f4f4c1",
-    chains,
-  });
-
-  const wagmiConfig = createConfig({
+  const config = createConfig({
     autoConnect: true,
-    connectors,
     publicClient,
+    connectors: [
+      new InjectedConnector({
+        chains,
+        options: {
+          name: "Injected",
+          shimDisconnect: true,
+        },
+      }),
+    ],
   });
 
   useEffect(() => {
@@ -100,7 +118,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {ready ? (
-        <WagmiConfig config={wagmiConfig}>
+        <WagmiConfig config={config}>
           <RainbowKitProvider
             chains={chains}
             theme={darkTheme({
@@ -168,12 +186,12 @@ export default function App({ Component, pageProps }: AppProps) {
                             <Image
                               className="h-8 w-auto"
                               src="/logo/logo-dark.png"
-                              alt="CeloSplit"
+                              alt="SplitMonies"
                               height={948}
                               width={1249}
                             />
                             <div className="text-2xl text-white font-black">
-                              CeloSplit
+                              SplitMonies
                             </div>
                           </div>
                           <nav className="flex flex-1 flex-col">
@@ -184,11 +202,9 @@ export default function App({ Component, pageProps }: AppProps) {
                               <li>
                                 <ul role="list" className="-mx-2 space-y-1">
                                   {navigation.map((item) => (
-                                    <li
-                                      key={item.name}
-                                      onClick={() => setSidebarOpen(false)}
-                                    >
+                                    <li key={item.name}>
                                       <Link
+                                        onClick={() => setSidebarOpen(false)}
                                         href={item.href}
                                         className={classNames(
                                           pathname === item.href
@@ -229,12 +245,12 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Image
                       className="h-8 w-auto"
                       src="/logo/logo-dark.png"
-                      alt="CeloSplit"
+                      alt="SplitMonies"
                       height={948}
                       width={1249}
                     />
                     <div className="text-2xl font-black text-white">
-                      CeloSplit
+                      SplitMonies
                     </div>
                   </div>
                   <nav className="flex flex-1 flex-col">
@@ -272,7 +288,6 @@ export default function App({ Component, pageProps }: AppProps) {
                           href="#"
                           className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-indigo-700"
                         >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             className="h-8 w-8 rounded-full bg-indigo-700"
                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -301,18 +316,17 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Image
                       className="h-8 w-auto"
                       src="/logo/logo-dark.png"
-                      alt="CeloSplit"
+                      alt="SplitMonies"
                       height={948}
                       width={1249}
                     />
                     <div className="text-2xl font-black leading-6 text-white">
-                      CeloSplit
+                      SplitMonies
                     </div>
                   </div>
                 </div>
                 <a href="#">
                   <span className="sr-only">Your profile</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     className="h-8 w-8 rounded-full bg-indigo-700"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
