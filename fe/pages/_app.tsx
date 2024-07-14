@@ -77,7 +77,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const { publicClient, chains } = configureChains(
-    // [mainnet, optimism],
     [celoAlfajores],
     [publicProvider()]
   );
