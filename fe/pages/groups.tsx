@@ -15,7 +15,7 @@ export default function Index() {
   useEffect(() => {
     if (router.isReady) {
       const apiUrl =
-        "https://api.studio.thegraph.com/query/55648/splitmonies/version/latest"; // Replace with your GraphQL API URL
+        "https://api.studio.thegraph.com/query/55648/celosplit/0.01"; // Replace with your GraphQL API URL
       const query = `
       {
         groupCreateds( 
