@@ -81,30 +81,30 @@ module.exports = {
         //     chainId: 137,
         // },
     },
-    etherscan: {
-        apiKey: {
-            celoAlfajores: process.env.CELOSCAN_KEY,
-            celo: process.env.CELOSCAN_KEY
-        },
-        customChains: [
-            {
-                network: "celoAlfajores",
-                chainId: 44787,
-                urls: {
-                    apiURL: "https://api-alfajores.celoscan.io/api",
-                    browserURL: "https://alfajores.celoscan.io",
-                },
-            },
-            {
-                network: "celo",
-                chainId: 42220,
-                urls: {
-                    apiURL: "https://api.celoscan.io/api",
-                    browserURL: "https://celoscan.io/",
-                },
-            },
-        ]
-    },
+    // etherscan: {
+    //     apiKey: {
+    //         celoAlfajores: process.env.CELOSCAN_KEY,
+    //         celo: process.env.CELOSCAN_KEY,
+    //     },
+    //     customChains: [
+    //         {
+    //             network: "celoAlfajores",
+    //             chainId: 44787,
+    //             urls: {
+    //                 apiURL: "https://api-alfajores.celoscan.io/api",
+    //                 browserURL: "https://alfajores.celoscan.io",
+    //             },
+    //         },
+    //         {
+    //             network: "celo",
+    //             chainId: 42220,
+    //             urls: {
+    //                 apiURL: "https://api.celoscan.io/api",
+    //                 browserURL: "https://celoscan.io/",
+    //             },
+    //         },
+    //     ],
+    // },
     gasReporter: {
         enabled: true,
         currency: "USD",
